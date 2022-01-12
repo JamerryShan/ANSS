@@ -6,7 +6,7 @@ Sign its own session key via the group signature using its private key
 import utils
 import ecdsa
 from ecdsa.ecdsa import curve_secp256k1
-
+import pickle
 
 # Read the masked public key list from ./key_pairs/mask_i.txt
 # the public key is stored in the form of two strings split by a space
@@ -45,7 +45,6 @@ UdChSVRnxJ3+LPujnQIDAQAB
 -----END PUBLIC KEY-----'''
     # sign the session key via the group signature
     session_key_signature = utils.ring_signature_gen(private_key, index, session_key, masked_public_key_list, _M)
-
-    # verify the signature
-    # since it's just one line code, let's fake the VSSP verification here
-    print(utils.verify_ring_signature(session_key, masked_public_key_list, *session_key_signature, _M))
+    # save signature using pickle
+    with open('./signature' + str(index) + '.txt', 'wb') as f:
+        pickle.dump(session_key_signature, f)
