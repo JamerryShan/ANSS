@@ -26,7 +26,7 @@ def read_mask():
 
 # load signature from signature2.txt
 def load_signature():
-    with open('./signature2.txt', 'rb') as f:
+    with open('./signature.txt', 'rb') as f:
         signature = pickle.load(f)
     return signature
 

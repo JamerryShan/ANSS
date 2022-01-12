@@ -46,5 +46,5 @@ UdChSVRnxJ3+LPujnQIDAQAB
     # sign the session key via the group signature
     session_key_signature = utils.ring_signature_gen(private_key, index, session_key, masked_public_key_list, _M)
     # save signature using pickle
-    with open('./signature' + str(index) + '.txt', 'wb') as f:
+    with open('./signature.txt', 'wb') as f:
         pickle.dump(session_key_signature, f)
