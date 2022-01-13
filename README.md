@@ -5,7 +5,7 @@ This is a demo for the ANSS Course.
 It is heavily based on the vehicle sharing system [HERMES: Scalable, Secure, and Privacy-Enhancing Vehicular Sharing-Access System
 ](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9477257) and the group signature scheme [Linkable Spontaneous Anonymous Group Signature for Ad Hoc Groups](https://eprint.iacr.org/2004/027.pdf).
 
-In the original HERMES system, the session keys are forwarded by the vehicle owners to the service providers, which means that the session keys might be changed by vehicle owners. So, the group signature scheme is used to ensure that the session keys are not changed when it reaches the service providers. Besides, a trusted authority is introduced to mantain the public key list, and TA will mask the public key list to make sure that even if the VSSP knows the public key list, it cannot tell which user is in which group. (Try to reach the group signature based zero-knowledge proof.)
+In the original HERMES system, the session keys are forwarded by the vehicle owners to the service providers, which means that the session keys might be chenged to a fake one by vehicle owners. So, the group signature scheme is used to ensure that the session keys are not changed when it reaches the service providers. Besides, a trusted authority is introduced to mantain the public key list, and TA will mask the public key list to make sure that even if the VSSP knows the public key list, it cannot tell which user is in which group. (Try to reach the group signature based zero-knowledge proof.)
 
 ### Stuff used in this demo
  * [ECDSA](https://github.com/warner/python-ecdsa) ECDSA cryptography python library. 
@@ -26,6 +26,11 @@ Then, the trusted authority will generate a secure random group key and a public
 ```
 python TA.py
 ```
-The consumer will run the consumer.py script, which will generate a signature of the session key. The consumer will send the signature to the VSSP. The VSSP will verify the signature and the session key is valid and unchanged by using the masked public key list. (Since it's just one line of code, I will verify the signature in consumer.py.)
+The consumer will run the consumer.py script, which will generate a signature of the session key. The consumer will send the signature to the VSSP. The VSSP will verify the signature and the session key is valid and unchanged by using the masked public key list.
 ```
 python consumer.py
+```
+The VSSP will run the VSSP.py script, which will verify the signature of the group signature.
+```
+python VSSP.py
+```

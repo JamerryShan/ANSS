@@ -48,3 +48,7 @@ UdChSVRnxJ3+LPujnQIDAQAB
     # save signature using pickle
     with open('./signature.txt', 'wb') as f:
         pickle.dump(session_key_signature, f)
+    
+    # print the signature
+    print("The signature of session key is ")
+    print(session_key_signature)
